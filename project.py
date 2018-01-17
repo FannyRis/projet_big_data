@@ -44,7 +44,7 @@ def flat_map(rel, l):
 #-----------------------------------------------------------------------------------------------------------------------
 
 def fIter(rel, n):
-    return lambda x : rel(x) if n == 1 else flat_map(fIter(rel, n-1), x)
+    return lambda x : [x] if n == 0 else flat_map( rel, fIter(rel, n-1)(x) )
 
 #=======================================================================================================================
 
@@ -53,4 +53,4 @@ print (exist(lambda x : x > 4, [2, 4, 5]))
 print(find(lambda x : x>5, [3, 6, 2, 7]))
 print(near(1))
 print(flat_map(near, [2, 10, 20]))
-print(fIter(near, 2)(2))
+print(fIter(near, 0)(0))
